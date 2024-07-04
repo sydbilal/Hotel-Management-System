@@ -6,6 +6,9 @@ import About from "./Pages/About";
 import Contact from "./Pages/Contact";
 import RegisterPage from "./Pages/RegisterPage";
 import LoginPage from "./Pages/LoginPage";
+import AdminPage from "./Pages/AdminPage";
+// import ProtectedRoute from "./Components/ProtectedRoute";
+// import AdminLoginPage from "./Pages/AdminLoginPage";
 
 function App() {
   return (
@@ -17,6 +20,10 @@ function App() {
         <Route path="/contactus" element={<Contact/>} />
         <Route path="/register" element={<RegisterPage/>} />
         <Route path="/login" element={<LoginPage/>} />
+        <Route path="/admin" element={<AdminPage/>} />
+        {/* <Route path="/adminlogin" element={<AdminLoginPage/>} /> */}
+        {/* <Route element={<ProtectedRoute requiredRole={['admin', 'superadmin']} />}/> */}
+
 
 
 

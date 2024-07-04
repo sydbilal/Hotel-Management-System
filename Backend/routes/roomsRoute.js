@@ -15,7 +15,7 @@ router.get('/getallrooms', async (req, res) => {
 })
 
 // Create a room
-router.post('/rooms', async (req, res) => {
+router.post('/addroom', async (req, res) => {
     try {
       const newRoom = new Room(req.body);
       await newRoom.save();

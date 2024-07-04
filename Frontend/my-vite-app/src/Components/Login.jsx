@@ -6,8 +6,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(""); // For success message
-  const [loading, setLoading] = useState("")
-
+  const [loading, setLoading] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -20,28 +19,25 @@ function Login() {
 
     try {
       // Send login request to backend
-      setLoading(true)
+      setLoading(true);
       const response = await axios.post("/api/users/login", {
         email,
         password,
       });
-      setLoading(false)
-      localStorage.setItem("currentUser", JSON.stringify(response.data))
-      window.location.href = '/'
+      setLoading(false);
+      localStorage.setItem("currentUser", JSON.stringify(response.data));
+      // You might want to save the token in localStorage or context here
+      // localStorage.setItem("token", JSON.stringify(response.data.token));
+      window.location.href = "/";
 
-      // Assuming the response contains user data and token
-      console.log("Logged in successfully", response.data);
       setSuccess("Logged in successfully");
       setError("");
 
-      setEmail("")
-      setPassword("")
-
-      // You might want to save the token in localStorage or context here
-      // localStorage.setItem('token', response.data.token);
+      setEmail("");
+      setPassword("");
     } catch (error) {
       // Handle error response from backend
-      setLoading(false)
+      setLoading(false);
       setError(error.response?.data?.message || "An error occurred");
       setSuccess("");
     }
@@ -49,9 +45,12 @@ function Login() {
 
   return (
     <div className="container mx-auto p-4 mt-5">
-      {loading && (<p>Loading...</p>)}
+      {loading && <p>Loading...</p>}
       <h1 className="text-2xl text-center mb-4">Login</h1>
-      <form onSubmit={handleLogin} className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
+      <form
+        onSubmit={handleLogin}
+        className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md"
+      >
         {error && <p className="text-red-500 mb-4">{error}</p>}
         {success && <p className="text-green-500 mb-4">{success}</p>}
         <div className="mb-4">
@@ -68,7 +67,10 @@ function Login() {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 font-bold mb-2" htmlFor="password">
+          <label
+            className="block text-gray-700 font-bold mb-2"
+            htmlFor="password"
+          >
             Password
           </label>
           <input

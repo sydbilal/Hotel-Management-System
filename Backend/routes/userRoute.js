@@ -47,6 +47,53 @@ router.post('/register', async (req, res) => {
     }
 });
 
+// Delete a user
+router.delete('/users/:id', async (req, res) => {
+    try {
+        await UserModel.findByIdAndDelete(req.params.id);
+        res.status(204).json({ message: 'User deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting user:', error);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
+// Get all users
+router.get('/users', async (req, res) => {
+    try {
+        const users = await UserModel.find({});
+        res.json(users);
+    } catch (error) {
+        console.error('Error fetching users:', error);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
+// Update user role
+router.put('/users/:id/role', async (req, res) => {
+    const { role } = req.body;
+
+    if (!['admin', 'user', 'staff', 'superadmin'].includes(role)) {
+        return res.status(400).json({ message: 'Invalid role' });
+    }
+
+    try {
+        const user = await UserModel.findById(req.params.id);
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        user.role = role;
+        await user.save();
+
+        res.json({ message: 'User role updated successfully' });
+    } catch (error) {
+        console.error('Error updating user role:', error);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
 // Authenticate user and get token
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;

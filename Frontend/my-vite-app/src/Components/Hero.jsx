@@ -1,13 +1,17 @@
 // Hero.jsx
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Room from "./Room";
+import { DatePicker } from "antd";
+// import moment from "moment";
 
 function Hero() {
+  const { RangePicker } = DatePicker;
+  const dateFormat = "DD/MM/YYYY";
+
   const [rooms, setRooms] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,10 +31,22 @@ function Hero() {
     fetchData();
   }, []);
 
+  function filterByDate(dates) {
+    console.log((dates[0].format('DD-MM-YYYY')))
+    console.log((dates[1].format('DD-MM-YYYY')))
+  }
+
   return (
-    
     <div className="container mx-auto p-4">
-            <h1 className="text-center text-2xl mt-5 mb-5">Book your favourite room</h1>
+      <h1 className="text-center text-2xl mt-5 mb-5">
+        Book your favourite room
+      </h1>
+      <div className="mb-5">
+        <RangePicker
+          format={dateFormat}
+          onChange={filterByDate}
+        />
+      </div>
       {loading ? (
         <p>Loading...</p>
       ) : error ? (
@@ -41,7 +57,6 @@ function Hero() {
             <Room key={room.roomNumber} room={room} />
           ))}
         </div>
-        
       )}
     </div>
   );

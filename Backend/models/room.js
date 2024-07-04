@@ -1,7 +1,5 @@
-// Import mongoose module
 const mongoose = require('mongoose');
 
-// Define the Room schema
 const roomSchema = new mongoose.Schema({
     roomName: {
         type: String,
