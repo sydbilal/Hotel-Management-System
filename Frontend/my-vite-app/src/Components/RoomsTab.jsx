@@ -70,6 +70,19 @@ const RoomsTab = ({ refreshKey }) => {
       key: 'status',
     },
     {
+      title: 'Current Bookings',
+      key: 'currentBookings',
+      render: (text, record) => (
+        <ul>
+          {record.currentBookings.map((booking, index) => (
+            <li key={index}>
+              User: {booking.userId}, Start: {new Date(booking.startDate).toLocaleDateString()}, End: {new Date(booking.endDate).toLocaleDateString()}
+            </li>
+          ))}
+        </ul>
+      )
+    },
+    {
       title: 'Action',
       key: 'action',
       render: (_, record) => (

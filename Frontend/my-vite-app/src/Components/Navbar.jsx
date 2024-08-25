@@ -9,11 +9,12 @@ function classNames(...classes) {
 }
 
 function Navbar() {
-  const user = JSON.parse(localStorage.getItem("currentUser"));
+  // const user = JSON.parse(localStorage.getItem("currentUser"));
+  const user = JSON.parse(localStorage.getItem("Bearertoken"));
 
   function logout() {
-    JSON.parse(localStorage.removeItem("currentUser"));
-    // JSON.parse(localStorage.removeItem("token"));
+    // JSON.parse(localStorage.removeItem("currentUser"));
+    JSON.parse(localStorage.removeItem("Bearertoken"));
     window.location.href = "/";
   }
 

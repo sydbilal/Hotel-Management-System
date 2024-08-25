@@ -12,6 +12,8 @@ function Hero() {
   const [rooms, setRooms] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [fromdate, setFromdate] = useState()
+  const [todate, setTodate] = useState()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,6 +36,8 @@ function Hero() {
   function filterByDate(dates) {
     console.log((dates[0].format('DD-MM-YYYY')))
     console.log((dates[1].format('DD-MM-YYYY')))
+    setFromdate(dates[0].format('DD-MM-YYYY'))
+    setTodate(dates[1].format('DD-MM-YYYY'))
   }
 
   return (
@@ -54,7 +58,7 @@ function Hero() {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {rooms.map((room) => (
-            <Room key={room.roomNumber} room={room} />
+            <Room key={room.roomNumber} room={room} fromdate={fromdate} todate={todate} />
           ))}
         </div>
       )}

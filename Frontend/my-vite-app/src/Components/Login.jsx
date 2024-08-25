@@ -25,9 +25,9 @@ function Login() {
         password,
       });
       setLoading(false);
-      localStorage.setItem("currentUser", JSON.stringify(response.data));
+      // localStorage.setItem("currentUser", JSON.stringify(response.data));
+      localStorage.setItem("Bearertoken", JSON.stringify(response.data.token));
       // You might want to save the token in localStorage or context here
-      // localStorage.setItem("token", JSON.stringify(response.data.token));
       window.location.href = "/";
 
       setSuccess("Logged in successfully");

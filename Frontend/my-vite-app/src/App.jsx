@@ -7,6 +7,7 @@ import Contact from "./Pages/Contact";
 import RegisterPage from "./Pages/RegisterPage";
 import LoginPage from "./Pages/LoginPage";
 import AdminPage from "./Pages/AdminPage";
+import Booking from "./Components/Booking";
 // import ProtectedRoute from "./Components/ProtectedRoute";
 // import AdminLoginPage from "./Pages/AdminLoginPage";
 
@@ -21,6 +22,8 @@ function App() {
         <Route path="/register" element={<RegisterPage/>} />
         <Route path="/login" element={<LoginPage/>} />
         <Route path="/admin" element={<AdminPage/>} />
+        <Route path="/booking/:roomNumber" element={<Booking/>} />
+
         {/* <Route path="/adminlogin" element={<AdminLoginPage/>} /> */}
         {/* <Route element={<ProtectedRoute requiredRole={['admin', 'superadmin']} />}/> */}
 

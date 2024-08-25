@@ -1,37 +1,38 @@
 // AdminPage.jsx
-import React, { useState } from 'react';
-import { Tabs } from 'antd';
-import Navbar from '../Components/Navbar';
-import RoomsTab from '../Components/RoomsTab';
-import UsersTab from '../Components/UsersTab';
-import AddRoomsTab from '../Components/AddRoomsTab';
+import React, { useState } from "react";
+import { Tabs } from "antd";
+import Navbar from "../Components/Navbar";
+import RoomsTab from "../Components/RoomsTab";
+import UsersTab from "../Components/UsersTab";
+import AddRoomsTab from "../Components/AddRoomsTab";
+import BookingsTab from "../Components/BookingsTab";
 
 const AdminPage = () => {
   const [refreshKey, setRefreshKey] = useState(0);
 
   const refreshRooms = () => {
-    setRefreshKey(prev => prev + 1);
+    setRefreshKey((prev) => prev + 1);
   };
 
   const items = [
     {
-      key: '1',
-      label: 'Bookings',
-      children: 'All Bookings',
+      key: "1",
+      label: "Bookings",
+      children: <BookingsTab refreshKey={refreshKey} refreshRooms={refreshRooms} />,
     },
     {
-      key: '2',
-      label: 'Rooms',
+      key: "2",
+      label: "Rooms",
       children: <RoomsTab refreshKey={refreshKey} />,
     },
     {
-      key: '3',
-      label: 'Add Rooms',
+      key: "3",
+      label: "Add Rooms",
       children: <AddRoomsTab refreshRooms={refreshRooms} />,
     },
     {
-      key: '4',
-      label: 'Users',
+      key: "4",
+      label: "Users",
       children: <UsersTab />,
     },
   ];
